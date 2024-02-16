@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-u5v8_-t*lj-a_1+1iy%!@p4ko0pbz#s!upmfnza4(8$g&4ni6a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*.vercel.app']
 
 
 # Application definition
@@ -77,13 +80,11 @@ WSGI_APPLICATION = 'qna.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'zpwgwfsa',
-        'USER':'zpwgwfsa',
-        'PASSWORD':'2YIZfuPLOeBiLlwPVjUdCoqj1wc3xaTf',
-        'HOST':'rain.db.elephantsql.com',
-        'OPTIONS': {
-            'sslmode': 'require', 
-        },
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER':os.getenv('DATABASE_USER'),
+        'PASSWORD':os.getenv('DATABASE_PASSWORD'),
+        'HOST':os.getenv('DATABASE_HOST'),
+        
     }  
 }
 
